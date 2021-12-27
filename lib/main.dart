@@ -2,10 +2,13 @@ import 'package:expense_planner/transactions.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+//! main method
 void main() {
   runApp(MyApp());
 }
 
+//! Main my App Widget which will contain material app widget(root of widget tree)
+///! and all other widgets..!
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -19,19 +22,25 @@ class MyApp extends StatelessWidget {
   }
 }
 
+//! My homepage widget.
 class MyHomePage extends StatelessWidget {
   final List<Transactions> transactions = [
     Transactions(
         id: "t1", title: "New Shoes", amount: 1500, date: DateTime.now()),
     Transactions(id: "t2", title: "Jacket", amount: 3000, date: DateTime.now()),
   ];
+  //? variables used for manual method of saving data
+  // late String inputTitle;
+  // late String inputAmount;
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF6EABE),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF87AAAA),
+        backgroundColor: const Color(0xFF6f8b8b),
         title: const Text("Expense Planner"),
       ),
       body: Container(
@@ -57,27 +66,49 @@ class MyHomePage extends StatelessWidget {
                 child: Column(
                   children: [
                     //! Add transaction Title.
-                    const TextField(
-                      decoration: InputDecoration(
+                    TextField(
+                      decoration: const InputDecoration(
                         labelText: "Title",
                       ),
+                      //? manual method of saving data.
+                      // onChanged: (val) {
+                      //   inputTitle = val;
+                      // },
+                      //? automatic method
+                      controller: titleController,
                     ),
                     //! Add Transaction Amount
-                    const TextField(
-                      decoration: InputDecoration(
+                    TextField(
+                      decoration: const InputDecoration(
                         labelText: "Amount",
                       ),
+                      //? manual method of saving data.
+                      // onChanged: (val) {
+                      //   inputAmount = val;
+                      // },
+                      //? automatic method
+                      controller: amountController,
                     ),
                     //! Add Transaction Button.
                     Container(
                       alignment: Alignment.bottomRight,
                       margin: const EdgeInsets.only(top: 6),
                       child: ElevatedButton(
-                        onPressed: () {},
-                        child: const Text("Add Transaction"),
+                        onPressed: () {
+                          print(titleController.text);
+                          print(amountController.text);
+                        },
+                        child: const Text(
+                          "Add Transaction",
+                          style: TextStyle(
+                            fontSize: 18,
+                            // fontWeight: FontWeight.bold,
+                            // letterSpacing: 1,
+                          ),
+                        ),
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(
-                              const Color(0xFF865439)),
+                              const Color(0xFF87AAAA)),
                         ),
                       ),
                     ),
