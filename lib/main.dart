@@ -36,23 +36,25 @@ class MyHomePage extends StatelessWidget {
         backgroundColor: const Color(0xFF6f8b8b),
         title: const Text("Expense Planner"),
       ),
-      body: Container(
-        //! Body of App.
-        margin: const EdgeInsets.symmetric(
-          horizontal: 5,
-        ),
-        child: Column(
-          //! Main Column
-          // mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            //! Weeks
-            const Card(
-              child: Text("Card 1"),
-              elevation: 3,
-            ),
-            UserTransactions(),
-          ],
+      body: SingleChildScrollView(
+        child: Container(
+          //! Body of App.
+          margin: const EdgeInsets.symmetric(
+            horizontal: 5,
+          ),
+          child: Column(
+            //! Main Column
+            // mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              //! Weeks
+              const Card(
+                child: Text("Card 1"),
+                elevation: 3,
+              ),
+              UserTransactions(),
+            ],
+          ),
         ),
       ),
     );
