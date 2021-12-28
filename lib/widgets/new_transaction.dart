@@ -33,6 +33,7 @@ class NewTransaction extends StatelessWidget {
               decoration: const InputDecoration(
                 labelText: "Amount",
               ),
+              keyboardType: TextInputType.number,
               //? manual method of saving data.
               // onChanged: (val) {
               //   inputAmount = val;
