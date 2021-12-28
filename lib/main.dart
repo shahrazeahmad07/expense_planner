@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 import './widgets/user_transactions.dart';
@@ -35,6 +37,12 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color(0xFF435454),
         title: const Text("Expense Planner"),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.add),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -56,6 +64,11 @@ class MyHomePage extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Image.asset('assets/icons/uparrow.png'),
+        onPressed: () {},
+        backgroundColor: const Color(0xFF435454),
       ),
     );
   }
