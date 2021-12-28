@@ -27,6 +27,7 @@ class NewTransaction extends StatelessWidget {
               // },
               //? automatic method
               controller: titleController,
+              textInputAction: TextInputAction.next,
             ),
             //! Add Transaction Amount
             TextField(
@@ -40,6 +41,7 @@ class NewTransaction extends StatelessWidget {
               // },
               //? automatic method
               controller: amountController,
+              textInputAction: TextInputAction.next,
             ),
             //! Add Transaction Button.
             Container(

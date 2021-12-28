@@ -11,13 +11,14 @@ class UserTransactions extends StatefulWidget {
 
 class _UserTransactionsState extends State<UserTransactions> {
   final List<Transactions> _userTransactions = [
+    Transactions(id: "t1", title: "Shirt", amount: 1500, date: DateTime.now()),
+    Transactions(id: "t2", title: "Jeans", amount: 1500, date: DateTime.now()),
+    Transactions(id: "t3", title: "Shoes", amount: 2500, date: DateTime.now()),
     Transactions(
-        id: "t1", title: "New Shoes", amount: 1500, date: DateTime.now()),
-    Transactions(id: "t2", title: "Jacket", amount: 3000, date: DateTime.now()),
-    Transactions(id: "t2", title: "Jacket", amount: 3000, date: DateTime.now()),
-    Transactions(id: "t2", title: "Jacket", amount: 3000, date: DateTime.now()),
-    Transactions(id: "t2", title: "Jacket", amount: 3000, date: DateTime.now()),
-    Transactions(id: "t2", title: "Jacket", amount: 3000, date: DateTime.now()),
+        id: "t4", title: "Wrist Watch", amount: 2000, date: DateTime.now()),
+    Transactions(id: "t5", title: "Jersy", amount: 2000, date: DateTime.now()),
+    Transactions(id: "t6", title: "Jacket", amount: 3000, date: DateTime.now()),
+    Transactions(id: "t7", title: "Cap", amount: 500, date: DateTime.now()),
   ];
 
   void _addNewTransaction(String title, double amount) {
@@ -29,7 +30,7 @@ class _UserTransactionsState extends State<UserTransactions> {
     );
 
     setState(() {
-      _userTransactions.add(tx);
+      _userTransactions.insert(0, tx);
     });
   }
 
