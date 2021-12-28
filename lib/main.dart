@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
 import './widgets/user_transactions.dart';
@@ -26,33 +24,30 @@ class MyApp extends StatelessWidget {
 
 //! My homepage widget.
 class MyHomePage extends StatelessWidget {
-  //? variables used for manual method of saving data
-  // late String inputTitle;
-  // late String inputAmount;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF6EABE),
+      //! App bar
       appBar: AppBar(
         backgroundColor: const Color(0xFF435454),
         title: const Text("Expense Planner"),
         actions: [
+          //! Add Transaction Button.
           IconButton(
             onPressed: () {},
             icon: const Icon(Icons.add),
           )
         ],
       ),
+      //! body
       body: SingleChildScrollView(
         child: Container(
-          //! Body of App.
           margin: const EdgeInsets.symmetric(
             horizontal: 5,
           ),
           child: Column(
             //! Main Column
-            // mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               //! Weeks
@@ -65,6 +60,7 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
       ),
+      //! Back to top button.
       floatingActionButton: FloatingActionButton(
         child: Image.asset('assets/icons/uparrow.png'),
         onPressed: () {},

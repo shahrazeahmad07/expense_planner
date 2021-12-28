@@ -4,7 +4,7 @@ class NewTransaction extends StatelessWidget {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
 
-  void Function(String title, double amount) addNewTransaction;
+  final void Function(String title, double amount) addNewTransaction;
 
   NewTransaction(this.addNewTransaction);
 
@@ -35,15 +35,10 @@ class NewTransaction extends StatelessWidget {
                 labelText: "Amount",
               ),
               keyboardType: TextInputType.number,
-              //? manual method of saving data.
-              // onChanged: (val) {
-              //   inputAmount = val;
-              // },
-              //? automatic method
               controller: amountController,
               textInputAction: TextInputAction.next,
             ),
-            //! Add Transaction Button.
+            //! Submit transaction Button.
             Container(
               alignment: Alignment.bottomRight,
               margin: const EdgeInsets.only(top: 6),
