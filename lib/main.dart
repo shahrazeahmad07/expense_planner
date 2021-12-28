@@ -33,7 +33,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF6EABE),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF6f8b8b),
+        backgroundColor: const Color(0xFF435454),
         title: const Text("Expense Planner"),
       ),
       body: SingleChildScrollView(

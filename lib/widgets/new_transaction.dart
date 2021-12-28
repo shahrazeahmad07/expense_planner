@@ -49,9 +49,15 @@ class NewTransaction extends StatelessWidget {
               margin: const EdgeInsets.only(top: 6),
               child: ElevatedButton(
                 onPressed: () {
+                  if (titleController.text.isEmpty ||
+                      amountController.text.isEmpty) {
+                    return;
+                  }
+                  final inputText = titleController.text;
+                  final inputAmout = double.parse(amountController.text);
                   addNewTransaction(
-                    titleController.text,
-                    double.parse(amountController.text),
+                    inputText,
+                    inputAmout,
                   );
                 },
                 child: const Text(
@@ -64,7 +70,7 @@ class NewTransaction extends StatelessWidget {
                 ),
                 style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all(const Color(0xFF87AAAA)),
+                      MaterialStateProperty.all(const Color(0xFF435454)),
                 ),
               ),
             ),
