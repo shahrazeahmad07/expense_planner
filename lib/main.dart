@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import './widgets/user_transactions.dart';
+import './widgets/new_transaction.dart';
+import './models/transactions.dart';
+import './widgets/transaction_list.dart';
 
 //! main method
 void main() {
@@ -23,7 +25,45 @@ class MyApp extends StatelessWidget {
 }
 
 //! My homepage widget.
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final List<Transactions> _userTransactions = [
+    Transactions(id: "t1", title: "Shirt", amount: 1500, date: DateTime.now()),
+    Transactions(id: "t2", title: "Jeans", amount: 1500, date: DateTime.now()),
+    Transactions(id: "t3", title: "Shoes", amount: 2500, date: DateTime.now()),
+    Transactions(
+        id: "t4", title: "Wrist Watch", amount: 2000, date: DateTime.now()),
+    Transactions(id: "t5", title: "Jersy", amount: 2000, date: DateTime.now()),
+    Transactions(id: "t6", title: "Jacket", amount: 3000, date: DateTime.now()),
+    Transactions(id: "t7", title: "Cap", amount: 500, date: DateTime.now()),
+  ];
+
+  void _addNewTransaction(String title, double amount) {
+    final tx = Transactions(
+      id: DateTime.now().toString(),
+      title: title,
+      amount: amount,
+      date: DateTime.now(),
+    );
+
+    setState(() {
+      _userTransactions.insert(0, tx);
+    });
+  }
+
+  void _startAddTransaction(BuildContext ctx) {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return NewTransaction(_addNewTransaction);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +75,7 @@ class MyHomePage extends StatelessWidget {
         actions: [
           //! Add Transaction Button.
           IconButton(
-            onPressed: () {},
+            onPressed: () => _startAddTransaction(context),
             icon: const Icon(Icons.add),
           )
         ],
@@ -55,7 +95,8 @@ class MyHomePage extends StatelessWidget {
                 child: Text("Card 1"),
                 elevation: 3,
               ),
-              UserTransactions(),
+              //! All Transactions:
+              TransactionList(_userTransactions),
             ],
           ),
         ),
