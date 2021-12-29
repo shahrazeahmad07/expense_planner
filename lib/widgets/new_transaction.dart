@@ -70,10 +70,10 @@ class _NewTransactionState extends State<NewTransaction> {
                     // letterSpacing: 1,
                   ),
                 ),
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all(const Color(0xFF435454)),
-                ),
+                // style: ButtonStyle(
+                //   backgroundColor:
+                //       MaterialStateProperty.all(const Color(0xFF435454)),
+                // ),
               ),
             ),
           ],

@@ -22,7 +22,8 @@ class TransactionList extends StatelessWidget {
                 margin: const EdgeInsets.fromLTRB(17, 10, 15, 10),
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: const Color(0xFF865439),
+                    // color: const Color(0xFF865439),
+                    color: Theme.of(context).primaryColor,
                     width: 1,
                   ),
                   borderRadius: const BorderRadius.all(Radius.circular(5)),
@@ -33,11 +34,12 @@ class TransactionList extends StatelessWidget {
                 ),
                 //! Price Value
                 child: Text(
-                  e.amount.toString(),
-                  style: const TextStyle(
+                  e.amount.toStringAsFixed(0),
+                  style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 19,
-                    color: Color(0xFF865439),
+                    // color: Color(0xFF865439),
+                    color: Theme.of(context).primaryColor,
                   ),
                 ),
               ),
@@ -52,17 +54,19 @@ class TransactionList extends StatelessWidget {
                     //! Title.
                     Text(
                       e.title,
+                      // style: Theme.of(context).textTheme.bodyText1,
                       style: const TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF865439),
+                        // color: Color(0xFF865439),
                       ),
                     ),
                     //! Date.
                     Text(
                       DateFormat.yMMMd().format(e.date),
-                      style: const TextStyle(
-                        color: Color(0xFF87AAAA),
+                      style: TextStyle(
+                        // color: Color(0xFF87AAAA),
+                        color: Theme.of(context).accentColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 15,
                       ),

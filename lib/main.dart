@@ -15,9 +15,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Expense Planner',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blueGrey,
+        accentColor: Colors.amber,
+        fontFamily: 'Quicksand',
+        textTheme: const TextTheme(
+          bodyText1: TextStyle(
+            fontFamily: 'OpenSans',
+          ),
+        ),
+        appBarTheme: const AppBarTheme(
+          titleTextStyle: TextStyle(
+            fontFamily: 'OpenSans',
+            // fontWeight: FontWeight.bold,
+            fontSize: 18,
+          ),
+        ),
       ),
       home: MyHomePage(),
     );
@@ -67,11 +81,13 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF6EABE),
+      backgroundColor: const Color(0xFFe6e6e6),
       //! App bar
       appBar: AppBar(
-        backgroundColor: const Color(0xFF435454),
-        title: const Text("Expense Planner"),
+        // backgroundColor: const Color(0xFF435454),
+        title: const Text(
+          "Expense Planner",
+        ),
         actions: [
           //! Add Transaction Button.
           IconButton(
@@ -105,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         child: Image.asset('assets/icons/uparrow.png'),
         onPressed: () {},
-        backgroundColor: const Color(0xFF435454),
+        // backgroundColor: const Color(0xFF435454),
       ),
     );
   }
