@@ -22,7 +22,8 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Quicksand',
         textTheme: const TextTheme(
           bodyText1: TextStyle(
-            fontFamily: 'OpenSans',
+            fontFamily: 'Quicksand',
+            fontSize: 22,
           ),
         ),
         appBarTheme: const AppBarTheme(
