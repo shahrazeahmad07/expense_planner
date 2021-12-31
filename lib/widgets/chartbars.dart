@@ -15,8 +15,11 @@ class ChartBars extends StatelessWidget {
           height: 4,
         ),
         //! Price Text.
-        Text(
-          spendingAmount.toStringAsFixed(0),
+        FittedBox(
+          child: Text(
+            spendingAmount.toStringAsFixed(0),
+            // style: Theme.of(context).textTheme.bodyText2,
+          ),
         ),
         const SizedBox(
           height: 2,

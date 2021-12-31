@@ -26,6 +26,11 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Quicksand',
             fontSize: 22,
           ),
+          bodyText2: TextStyle(
+            fontFamily: 'Quicksand',
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
         ),
         appBarTheme: const AppBarTheme(
           titleTextStyle: TextStyle(
