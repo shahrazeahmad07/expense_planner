@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class NewTransaction extends StatefulWidget {
-  final void Function(String title, double amount) addNewTransaction;
+  final void Function(String title, double amount, DateTime choosedDate)
+      addNewTransaction;
 
   NewTransaction(this.addNewTransaction);
 
@@ -11,8 +13,24 @@ class NewTransaction extends StatefulWidget {
 
 class _NewTransactionState extends State<NewTransaction> {
   final titleController = TextEditingController();
-
   final amountController = TextEditingController();
+  DateTime selectedDate = DateTime.now();
+
+  void datePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2001),
+      lastDate: DateTime.now(),
+    ).then((pickedDate) {
+      if (pickedDate == null) {
+        return;
+      }
+      setState(() {
+        selectedDate = pickedDate;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +62,35 @@ class _NewTransactionState extends State<NewTransaction> {
               controller: amountController,
               textInputAction: TextInputAction.next,
             ),
+            //! Date Selection Area.
+            const SizedBox(
+              height: 15,
+            ),
+            Row(
+              children: [
+                //! Calender button.
+                IconButton(
+                  onPressed: datePicker,
+                  icon: Icon(
+                    Icons.calendar_today_outlined,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+                //! Selected Date text.
+                Text(
+                  DateFormat.yMd().format(selectedDate),
+                  style: const TextStyle(
+                    fontFamily: 'Quicksand',
+                    // fontSize: 10,
+                    color: Color(0xFF607d8b),
+                    fontWeight: FontWeight.normal,
+                  ),
+                  // style: TextStyle(
+                  //   color: .color
+                  // ),
+                ),
+              ],
+            ),
             //! Submit transaction Button.
             Container(
               alignment: Alignment.bottomRight,
@@ -56,9 +103,11 @@ class _NewTransactionState extends State<NewTransaction> {
                   }
                   final inputText = titleController.text;
                   final inputAmout = double.parse(amountController.text);
+
                   widget.addNewTransaction(
                     inputText,
                     inputAmout,
+                    selectedDate,
                   );
                   Navigator.of(context).pop();
                 },
