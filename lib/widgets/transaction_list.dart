@@ -37,42 +37,11 @@ class TransactionList extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      //! Price Box.
-                      Container(
-                        margin: const EdgeInsets.fromLTRB(17, 10, 15, 10),
-                        width: 85,
-                        // height: 70,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            // color: const Color(0xFF865439),
-                            color: Theme.of(context).primaryColor,
-                            width: 1,
-                          ),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(100)),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 11,
-                          vertical: 13,
-                        ),
-                        //! Price Value
-                        child: FittedBox(
-                          child: Text(
-                            e.amount.toStringAsFixed(0),
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              // fontSize: 17,
-                              // color: Color(0xFF865439),
-                              color: Theme.of(context).primaryColor,
-                            ),
-                          ),
-                        ),
-                      ),
                       //! Transaction Title and Date.
                       Flexible(
                         fit: FlexFit.tight,
                         child: Container(
-                          margin: const EdgeInsets.only(top: 3),
+                          margin: const EdgeInsets.only(top: 3, left: 25),
                           height: 45,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,6 +73,47 @@ class TransactionList extends StatelessWidget {
                           ),
                         ),
                       ),
+                      //! Price Box.
+                      Container(
+                        margin: const EdgeInsets.fromLTRB(17, 10, 15, 10),
+                        // width: 70,
+                        // height: 70,
+                        decoration: const BoxDecoration(
+                            // border: Border.all(
+                            //   // color: const Color(0xFF865439),
+                            //   color: Theme.of(context).primaryColor,
+                            //   width: 1,
+                            // ),
+                            // borderRadius:
+                            //     const BorderRadius.all(Radius.circular(100)),
+                            ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 11,
+                          vertical: 13,
+                        ),
+                        //! Price Value
+                        child: Text(
+                          "Rs. ${e.amount.toStringAsFixed(0)}",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17,
+                            // color: Color(0xFF865439),
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        ),
+                      ),
+
+                      SizedBox(
+                        width: 1,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: const Color(0x11455A64),
+                            ),
+                          ),
+                        ),
+                      ),
+                      //! Delete Transaction Button.
                       Container(
                         margin: const EdgeInsets.symmetric(
                           horizontal: 10,
