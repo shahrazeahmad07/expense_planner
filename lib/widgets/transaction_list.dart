@@ -5,8 +5,9 @@ import '../models/transactions.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transactions> _userTransactions;
+  Function(String) deleteTransaction;
 
-  TransactionList(this._userTransactions);
+  TransactionList(this._userTransactions, this.deleteTransaction);
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +35,7 @@ class TransactionList extends StatelessWidget {
                 child: Card(
                   elevation: 3,
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       //! Price Box.
                       Container(
@@ -67,34 +69,50 @@ class TransactionList extends StatelessWidget {
                         ),
                       ),
                       //! Transaction Title and Date.
+                      Flexible(
+                        fit: FlexFit.tight,
+                        child: Container(
+                          margin: const EdgeInsets.only(top: 3),
+                          height: 45,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              //! Title.
+                              FittedBox(
+                                child: Text(
+                                  e.title,
+                                  // style: Theme.of(context).textTheme.bodyText1,
+                                  style: const TextStyle(
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.bold,
+                                    // color: Color(0xFF865439),
+                                  ),
+                                ),
+                              ),
+                              //! Date.
+                              Text(
+                                DateFormat.yMMMd().format(e.date),
+                                style: TextStyle(
+                                  // color: Color(0xFF87AAAA),
+                                  color: Theme.of(context).accentColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                       Container(
-                        margin: const EdgeInsets.only(top: 3),
-                        height: 45,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            //! Title.
-                            Text(
-                              e.title,
-                              // style: Theme.of(context).textTheme.bodyText1,
-                              style: const TextStyle(
-                                fontSize: 19,
-                                fontWeight: FontWeight.bold,
-                                // color: Color(0xFF865439),
-                              ),
-                            ),
-                            //! Date.
-                            Text(
-                              DateFormat.yMMMd().format(e.date),
-                              style: TextStyle(
-                                // color: Color(0xFF87AAAA),
-                                color: Theme.of(context).accentColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                              ),
-                            ),
-                          ],
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                        ),
+                        child: IconButton(
+                          onPressed: () => deleteTransaction(e.id),
+                          icon: const Icon(
+                            Icons.delete,
+                          ),
                         ),
                       ),
                     ],

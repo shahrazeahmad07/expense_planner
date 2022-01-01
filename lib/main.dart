@@ -53,6 +53,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  //! All transactions list.
   final List<Transactions> _userTransactions = [
     Transactions(id: "t1", title: "Shirt", amount: 1500, date: DateTime.now()),
     Transactions(id: "t2", title: "Jeans", amount: 1500, date: DateTime.now()),
@@ -64,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Transactions(id: "t7", title: "Cap", amount: 500, date: DateTime.now()),
   ];
 
+  //! 7 days transaction getter
   List<Transactions> get _recentTransactions {
     return _userTransactions.where((element) {
       return element.date.isAfter(
@@ -76,6 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
+  //! add new transaction method.
   void _addNewTransaction(String title, double amount, DateTime choosedDate) {
     final tx = Transactions(
       id: DateTime.now().toString(),
@@ -89,6 +92,14 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  //! Delete a transaction method.
+  void _deleteTransaction(String id) {
+    setState(() {
+      _userTransactions.removeWhere((element) => element.id == id);
+    });
+  }
+
+  //! Add Transaction modal
   void _startAddTransaction(BuildContext ctx) {
     showModalBottomSheet(
       context: ctx,
@@ -132,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
               //! Weeks
               Chart(_recentTransactions),
               //! All Transactions:
-              TransactionList(_userTransactions),
+              TransactionList(_userTransactions, _deleteTransaction),
             ],
           ),
         ),
