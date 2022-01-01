@@ -53,16 +53,77 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  //! scroll view controller
+  final _scrollController = ScrollController();
+
   //! All transactions list.
   final List<Transactions> _userTransactions = [
-    Transactions(id: "t1", title: "Shirt", amount: 1500, date: DateTime.now()),
-    Transactions(id: "t2", title: "Jeans", amount: 1500, date: DateTime.now()),
-    Transactions(id: "t3", title: "Shoes", amount: 2500, date: DateTime.now()),
     Transactions(
-        id: "t4", title: "Wrist Watch", amount: 2000, date: DateTime.now()),
-    Transactions(id: "t5", title: "Jersy", amount: 2000, date: DateTime.now()),
-    Transactions(id: "t6", title: "Jacket", amount: 3000, date: DateTime.now()),
-    Transactions(id: "t7", title: "Cap", amount: 500, date: DateTime.now()),
+      id: "t1",
+      title: "Shirt",
+      amount: 1500,
+      date: DateTime(2021, 12, 26),
+    ),
+    Transactions(
+      id: "t2",
+      title: "Jeans",
+      amount: 1500,
+      date: DateTime(2021, 12, 27),
+    ),
+    Transactions(
+      id: "t3",
+      title: "Shoes",
+      amount: 2500,
+      date: DateTime(2021, 12, 28),
+    ),
+    Transactions(
+      id: "t4",
+      title: "Wrist Watch",
+      amount: 2000,
+      date: DateTime(2021, 12, 29),
+    ),
+    Transactions(
+      id: "t5",
+      title: "Jersy",
+      amount: 2000,
+      date: DateTime(2021, 12, 29),
+    ),
+    Transactions(
+      id: "t6",
+      title: "Jacket",
+      amount: 3000,
+      date: DateTime(2021, 12, 30),
+    ),
+    Transactions(
+      id: "t7",
+      title: "Cap",
+      amount: 500,
+      date: DateTime(2021, 12, 31),
+    ),
+    Transactions(
+      id: "t7",
+      title: "Cap",
+      amount: 500,
+      date: DateTime(2021, 12, 31),
+    ),
+    Transactions(
+      id: "t7",
+      title: "Cap",
+      amount: 500,
+      date: DateTime(2021, 12, 31),
+    ),
+    Transactions(
+      id: "t7",
+      title: "Cap",
+      amount: 500,
+      date: DateTime(2021, 12, 31),
+    ),
+    Transactions(
+      id: "t7",
+      title: "Cap",
+      amount: 500,
+      date: DateTime(2021, 12, 31),
+    ),
   ];
 
   //! 7 days transaction getter
@@ -109,6 +170,12 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  //! Scroll to top method
+  void _scrollToTop() {
+    _scrollController.animateTo(0,
+        duration: Duration(seconds: 1), curve: Curves.decelerate);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,6 +199,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       //! body
       body: SingleChildScrollView(
+        controller: _scrollController,
         child: Container(
           margin: const EdgeInsets.symmetric(
             horizontal: 5,
@@ -151,7 +219,9 @@ class _MyHomePageState extends State<MyHomePage> {
       //! Back to top button.
       floatingActionButton: FloatingActionButton(
         child: Image.asset('assets/icons/uparrow.png'),
-        onPressed: () {},
+        onPressed: () {
+          _scrollToTop();
+        },
         // backgroundColor: const Color(0xFF435454),
       ),
     );
