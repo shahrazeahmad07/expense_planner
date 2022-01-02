@@ -24,8 +24,8 @@ class Chart extends StatelessWidget {
       }
 
       return {
-        'Day': DateFormat.E().format(weekday).substring(0, 1),
-        'Amount': totalSum
+        'Day': DateFormat.d().format(weekday),
+        'Amount': totalSum,
       };
     }).reversed.toList();
   }

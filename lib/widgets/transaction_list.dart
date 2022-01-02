@@ -75,34 +75,30 @@ class TransactionList extends StatelessWidget {
                       ),
                       //! Price Box.
                       Container(
-                        margin: const EdgeInsets.fromLTRB(17, 10, 15, 10),
+                        // margin: const EdgeInsets.fromLTRB(17, 10, 15, 10),
                         // width: 70,
                         // height: 70,
-                        decoration: const BoxDecoration(
-                            // border: Border.all(
-                            //   // color: const Color(0xFF865439),
-                            //   color: Theme.of(context).primaryColor,
-                            //   width: 1,
-                            // ),
-                            // borderRadius:
-                            //     const BorderRadius.all(Radius.circular(100)),
-                            ),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 11,
-                          vertical: 13,
-                        ),
+                        // decoration: const BoxDecoration(
+                        // border: Border.all(
+                        //   // color: const Color(0xFF865439),
+                        //   color: Theme.of(context).primaryColor,
+                        //   width: 1,
+                        // ),
+                        // borderRadius:
+                        //     const BorderRadius.all(Radius.circular(100)),
+                        // ),
+                        padding: const EdgeInsets.fromLTRB(12, 0, 15, 0),
                         //! Price Value
                         child: Text(
                           "Rs. ${e.amount.toStringAsFixed(0)}",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 17,
+                            fontSize: 16,
                             // color: Color(0xFF865439),
                             color: Theme.of(context).primaryColor,
                           ),
                         ),
                       ),
-
                       SizedBox(
                         width: 1,
                         child: Container(

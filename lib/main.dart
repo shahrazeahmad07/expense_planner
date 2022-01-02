@@ -172,8 +172,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   //! Scroll to top method
   void _scrollToTop() {
-    _scrollController.animateTo(0,
-        duration: Duration(seconds: 1), curve: Curves.decelerate);
+    _scrollController.animateTo(
+      0,
+      duration: const Duration(
+        milliseconds: 300,
+      ),
+      curve: Curves.decelerate,
+    );
   }
 
   @override
