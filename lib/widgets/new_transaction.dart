@@ -34,10 +34,14 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 3,
+    return SingleChildScrollView(
       child: Container(
-        padding: const EdgeInsets.fromLTRB(15, 1, 15, 7),
+        padding: EdgeInsets.only(
+          left: 15,
+          top: 1,
+          right: 15,
+          bottom: MediaQuery.of(context).viewInsets.bottom + 50,
+        ),
         child: Column(
           children: [
             //! Add transaction Title.
@@ -73,7 +77,7 @@ class _NewTransactionState extends State<NewTransaction> {
                   onPressed: datePicker,
                   icon: Icon(
                     Icons.calendar_today_outlined,
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(context).accentColor,
                   ),
                 ),
                 //! Selected Date text.
