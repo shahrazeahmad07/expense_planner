@@ -27,9 +27,8 @@ class TransactionList extends StatelessWidget {
               ),
             ],
           )
-        : Column(
-            children: _userTransactions.map((e) {
-              //! Transaction Card.
+        : ListView.builder(
+            itemBuilder: (context, index) {
               return Container(
                 height: 85,
                 child: Card(
@@ -50,7 +49,7 @@ class TransactionList extends StatelessWidget {
                               //! Title.
                               FittedBox(
                                 child: Text(
-                                  e.title,
+                                  _userTransactions[index].title,
                                   // style: Theme.of(context).textTheme.bodyText1,
                                   style: const TextStyle(
                                     fontSize: 19,
@@ -61,7 +60,8 @@ class TransactionList extends StatelessWidget {
                               ),
                               //! Date.
                               Text(
-                                DateFormat.yMMMd().format(e.date),
+                                DateFormat.yMMMd()
+                                    .format(_userTransactions[index].date),
                                 style: TextStyle(
                                   // color: Color(0xFF87AAAA),
                                   color: Theme.of(context).accentColor,
@@ -90,7 +90,7 @@ class TransactionList extends StatelessWidget {
                         padding: const EdgeInsets.fromLTRB(12, 0, 15, 0),
                         //! Price Value
                         child: Text(
-                          "Rs. ${e.amount.toStringAsFixed(0)}",
+                          "Rs. ${_userTransactions[index].amount.toStringAsFixed(0)}",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
@@ -115,7 +115,8 @@ class TransactionList extends StatelessWidget {
                           horizontal: 10,
                         ),
                         child: IconButton(
-                          onPressed: () => deleteTransaction(e.id),
+                          onPressed: () =>
+                              deleteTransaction(_userTransactions[index].id),
                           icon: const Icon(
                             Icons.delete,
                           ),
@@ -125,7 +126,8 @@ class TransactionList extends StatelessWidget {
                   ),
                 ),
               );
-            }).toList(),
+            },
+            itemCount: _userTransactions.length,
           );
   }
 }

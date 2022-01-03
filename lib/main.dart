@@ -183,25 +183,27 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final appBar = AppBar(
+      // backgroundColor: const Color(0xFF435454),
+      title: const Text(
+        "Expense Planner",
+      ),
+      actions: [
+        //! Add Transaction Button.
+        IconButton(
+          onPressed: () => _startAddTransaction(context),
+          icon: const Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
+        )
+      ],
+    );
+
     return Scaffold(
       backgroundColor: const Color(0xFFe6e6e6),
       //! App bar
-      appBar: AppBar(
-        // backgroundColor: const Color(0xFF435454),
-        title: const Text(
-          "Expense Planner",
-        ),
-        actions: [
-          //! Add Transaction Button.
-          IconButton(
-            onPressed: () => _startAddTransaction(context),
-            icon: const Icon(
-              Icons.add,
-              color: Colors.white,
-            ),
-          )
-        ],
-      ),
+      appBar: appBar,
       //! body
       body: SingleChildScrollView(
         controller: _scrollController,
@@ -214,9 +216,21 @@ class _MyHomePageState extends State<MyHomePage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               //! Weeks
-              Chart(_recentTransactions),
+              Container(
+                height: (MediaQuery.of(context).size.height -
+                        MediaQuery.of(context).padding.top -
+                        appBar.preferredSize.height) *
+                    0.3,
+                child: Chart(_recentTransactions),
+              ),
               //! All Transactions:
-              TransactionList(_userTransactions, _deleteTransaction),
+              Container(
+                height: (MediaQuery.of(context).size.height -
+                        MediaQuery.of(context).padding.top -
+                        appBar.preferredSize.height) *
+                    0.7,
+                child: TransactionList(_userTransactions, _deleteTransaction),
+              ),
             ],
           ),
         ),
