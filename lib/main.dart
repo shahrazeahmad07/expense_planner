@@ -7,6 +7,9 @@ import './widgets/chart.dart';
 
 //! main method
 void main() {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setPreferredOrientations(
+  //     [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(MyApp());
 }
 
@@ -54,7 +57,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   //! scroll view controller
-  final _scrollController = ScrollController();
+  // final _scrollController = ScrollController();
 
   //! All transactions list.
   final List<Transactions> _userTransactions = [
@@ -126,6 +129,8 @@ class _MyHomePageState extends State<MyHomePage> {
     ),
   ];
 
+  bool _showChartswitch = false;
+
   //! 7 days transaction getter
   List<Transactions> get _recentTransactions {
     return _userTransactions.where((element) {
@@ -170,19 +175,24 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  //! Scroll to top method
-  void _scrollToTop() {
-    _scrollController.animateTo(
-      0,
-      duration: const Duration(
-        milliseconds: 300,
-      ),
-      curve: Curves.decelerate,
-    );
-  }
+  // //! Scroll to top method
+  // void _scrollToTop() {
+  //   _scrollController.animateTo(
+  //     0,
+  //     duration: const Duration(
+  //       milliseconds: 300,
+  //     ),
+  //     curve: Curves.decelerate,
+  //   );
+  // }
 
+  //! ================ build method ======================
   @override
   Widget build(BuildContext context) {
+    final inLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+
+    //! App bar
     final appBar = AppBar(
       // backgroundColor: const Color(0xFF435454),
       title: const Text(
@@ -202,47 +212,94 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       backgroundColor: const Color(0xFFe6e6e6),
-      //! App bar
+
       appBar: appBar,
       //! body
       body: SingleChildScrollView(
-        controller: _scrollController,
+        // controller: _scrollController,
         child: Container(
           margin: const EdgeInsets.symmetric(
             horizontal: 5,
           ),
           child: Column(
             //! Main Column
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            // crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              //! ========== Landscape Mode ============
+              //! Switch.
+              if (inLandscape)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Show Chart",
+                    ),
+                    Switch(
+                      value: _showChartswitch,
+                      onChanged: (val) {
+                        _showChartswitch = val;
+                        setState(() {});
+                      },
+                    ),
+                  ],
+                ),
               //! Weeks
-              Container(
-                height: (MediaQuery.of(context).size.height -
-                        MediaQuery.of(context).padding.top -
-                        appBar.preferredSize.height) *
-                    0.3,
-                child: Chart(_recentTransactions),
-              ),
-              //! All Transactions:
-              Container(
-                height: (MediaQuery.of(context).size.height -
-                        MediaQuery.of(context).padding.top -
-                        appBar.preferredSize.height) *
-                    0.7,
-                child: TransactionList(_userTransactions, _deleteTransaction),
-              ),
+              if (inLandscape)
+                _showChartswitch
+                    ? Container(
+                        width: double.infinity,
+                        height: (MediaQuery.of(context).size.height -
+                                MediaQuery.of(context).padding.top -
+                                appBar.preferredSize.height) *
+                            0.75,
+                        child: Chart(_recentTransactions),
+                      )
+                    :
+                    //! All Transactions:
+                    Container(
+                        height: (MediaQuery.of(context).size.height -
+                                MediaQuery.of(context).padding.top -
+                                appBar.preferredSize.height) *
+                            0.75,
+                        width: double.infinity,
+                        child: TransactionList(
+                            _userTransactions, _deleteTransaction),
+                      ),
+
+              //! ======== Portrait mode =======
+              if (!inLandscape)
+                Container(
+                  width: double.infinity,
+                  height: (MediaQuery.of(context).size.height -
+                          MediaQuery.of(context).padding.top -
+                          appBar.preferredSize.height) *
+                      0.3,
+                  child: Chart(_recentTransactions),
+                ),
+              if (!inLandscape)
+                Container(
+                  height: (MediaQuery.of(context).size.height -
+                          MediaQuery.of(context).padding.top -
+                          appBar.preferredSize.height) *
+                      0.7,
+                  width: double.infinity,
+                  child: TransactionList(_userTransactions, _deleteTransaction),
+                ),
             ],
           ),
         ),
       ),
       //! Back to top button.
-      floatingActionButton: FloatingActionButton(
-        child: Image.asset('assets/icons/uparrow.png'),
-        onPressed: () {
-          _scrollToTop();
-        },
+      floatingActionButton: FloatingActionButton.small(
+        child: const Icon(
+          Icons.add,
+          color: Colors.black,
+        ),
+        onPressed: () => _startAddTransaction(context),
+
         // backgroundColor: const Color(0xFF435454),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
